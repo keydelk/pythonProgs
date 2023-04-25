@@ -1,0 +1,6 @@
+This is a test text file.
+Testing my homemade text editor.
+That's it.
+
+Now I made some changes,
+lets save them
