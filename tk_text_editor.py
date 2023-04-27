@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-# Text editor app made with tkinter
+
+"""A simple text editor made with tkinter"""
 import tkinter as tk
 from tkinter.filedialog import askopenfilename, asksaveasfilename
+
 
 def open_file():
     """Open a file for editing"""
@@ -15,6 +17,7 @@ def open_file():
         text = input_file.read()
         txt_edit.insert(tk.END, text)
     window.title(f"Tk Text Editor - {filepath}")
+
 
 def save_file():
     """Save the current file as a new file."""

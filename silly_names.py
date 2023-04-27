@@ -1,29 +1,33 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 #  sillyNames.py
-#  
+#
 #  Copyright 2023 Keith Keydel <keydelk@reform>
-#  
+#
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
 #  the Free Software Foundation; either version 2 of the License, or
 #  (at your option) any later version.
-#  
+#
 #  This program is distributed in the hope that it will be useful,
 #  but WITHOUT ANY WARRANTY; without even the implied warranty of
 #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #  GNU General Public License for more details.
-#  
+#
 #  You should have received a copy of the GNU General Public License
 #  along with this program; if not, write to the Free Software
 #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #  MA 02110-1301, USA.
-#  
-#  
-import sys, random
+#
+#
+"""This program generates silly names"""
+import sys
+import random
 
-def main(args):
+
+def main():
+    """Generates silly names"""
     print("Welcome to the Psych 'Sidekick Name Picker.'\n")
     print("A name just like Sean would pick for Gus:\n\n")
     first = ('Baby Oil', 'Bad News', 'Big Burps', "Bill 'Beenie-Weenie'",
@@ -41,7 +45,7 @@ def main(args):
              'Snorki', 'Soupcan Sam', 'Spitzitout', 'Squids', 'Stinky',
              'Storyboard', 'Sweet Tea', 'TeeTee', 'Wheezy Joe',
              "Winston 'Jazz Hands'", 'Worms')
-             
+
     last = ('Appleyard', 'Bigmeat', 'Bloominshine', 'Boogerbottom',
             'Breedslovetrout', 'Butterbaugh', 'Clovenhoof', 'Clutterbuck',
             'Cocktoasten', 'Endicott', 'Fewhairs', 'Gooberdapple', 'Goodensmith',
@@ -58,12 +62,12 @@ def main(args):
             'Woolysocks')
 
     while True:
-        print("\n\n\033[1;31m{} {}\033[0m\n\n".format(random.choice(first), random.choice(last)))
+        print(f"\n\n\033[1;31m{random.choice(first)} {random.choice(last)}\033[0m\n\n")
         try_again = input("Try again? (Press Enter else n to quit)\n")
         if try_again.lower() == "n":
             break
-    
+
     return 0
 
 if __name__ == '__main__':
-    sys.exit(main(sys.argv))
+    sys.exit(main())
