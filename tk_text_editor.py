@@ -1,12 +1,53 @@
 #!/usr/bin/env python3
 
-"""A simple text editor made with tkinter"""
+"""A simple text editor made with tkinter."""
 import tkinter as tk
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 
+def validate_parentheses():
+    """ Validate that all parentheses are correctly matched"""
+    # define which characters are used as parentheses and
+    # which closeing parentheses go with which open parentheses
+    parens = {')': '(', ']': '[', '}': '{'}
+    # store opening parens in a stack
+    parenstack = []
+    # store text so we're not constantly calling the get method
+    text = txt_edit.get("1.0", tk.END)
+    # check each character in the text
+    for c in text:
+        # if c is an opening paren, push it on the stack
+        if c in parens.values():
+            parenstack.append(c)
+        # if c is a closing paren, check that its match is on top
+        elif c in parens.keys():
+            # if not a match, tell the user
+            if not parenstack or parens[c] != parenstack[-1]:
+                tk.messagebox.showwarning(
+                    title="Parentheses Validation",
+                    message=f"Unmatched closing parentheses {c}"
+                    )
+                return()
+            # else pop the match off the stack
+            else:
+                parenstack.pop()
+        # no need for a final else statement, since we just ignore other characters
+        # and continue to the next iteration
+    # After checking all the text, if there are any parentheses in the stack,
+    # they are missing their match
+    if not parenstack:
+        tk.messagebox.showinfo(
+            title="Parentheses Validation",
+            message="Parentheses are valid."
+            )
+        return()
+    else:
+        tk.messagebox.showwarning(
+            title="Parentheses Validation",
+            message=f"Unmatched opening parentheses {parenstack[-1]}"
+            )
 
 def open_file():
-    """Open a file for editing"""
+    """Open a file for editing."""
     filepath = askopenfilename(
         filetypes=[("Text Files", "*.txt"), ("All Files", "*.*")]
         )
@@ -42,9 +83,13 @@ txt_edit = tk.Text(window)
 frm_buttons = tk.Frame(window, relief=tk.RAISED, bd=2)
 btn_open = tk.Button(frm_buttons, text="Open", command=open_file)
 btn_save = tk.Button(frm_buttons, text="Save As...", command=save_file)
+btn_validate_parens = tk.Button(frm_buttons,
+                                text="Check Parentheses",
+                                command=validate_parentheses)
 
 btn_open.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
-btn_save.grid(row=1, column=0, sticky="ew", padx=5)
+btn_save.grid(row=1, column=0, sticky="ew", padx=5, pady=5)
+btn_validate_parens.grid(row=2, column=0, sticky="ew", padx=5)
 
 frm_buttons.grid(row=0, column=0, sticky="ns")
 txt_edit.grid(row=0, column=1, sticky="nsew")
