@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+"""Translate a string from English to Pig-Latin"""
+
+def main():
+    vowels = ('a', 'e', 'i', 'o')
+    txt = input("Enter text to translate into Pig-Latin: ")
+    outp = ""
+
+    for word in txt.split(" "):
+        consonants = ""
+        for char in word:
+            if char in vowels:
+                break
+            else:
+                consonants = consonants + char
+        outp = outp + word.lstrip(consonants) + consonants + "ay "
+
+    print(outp)
+
+if __name__ == "__main__":
+    main()

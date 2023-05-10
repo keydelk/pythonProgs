@@ -21,26 +21,26 @@
 #  MA 02110-1301, USA.
 #
 #
-"""This program generates silly names"""
+"""This program generates silly names."""
 import sys
 import random
 
 
 def main():
-    """Generates silly names"""
+    """Generate silly names."""
     print("Welcome to the Psych 'Sidekick Name Picker.'\n")
     print("A name just like Sean would pick for Gus:\n\n")
     first = ('Baby Oil', 'Bad News', 'Big Burps', "Bill 'Beenie-Weenie'",
              "Bob 'Stinkbug'", 'Bowel Noises', 'Boxelder', "Bud 'Lite",
              'Butterbean', 'Buttermilk', 'Buttocks', 'Chad', 'Chesterfield',
-             'Chewy', 'Chigger", "Cinnabuns', 'Cleet', 'Cornbread', 'Crab Meat',
+             'Chewy', 'Chigger", "Cinnabuns', 'Cleet', 'Cornbread', 'Crabs',
              'Crapps', 'Dark Skies', 'Dennis Clawhammer', 'Dicman', 'Elphonso',
-             'Fancypants', 'Figgs', 'Foncy', 'Gootsy', 'Greasy Jim', 'Huckleberry',
+             'Fancypants', 'Figgs', 'Foncy', 'Gootsy', 'Greasy Jim', 'Hucky',
              'Huggy', 'Ignatious', 'Jimbo', "Joe 'Pottin Soil'", 'Johnny',
              'Lemongrass', 'Lil Debil', 'Longbranch', '"Lunch Money"',
              'Mergatroid', '"Mr Peabody"', 'Oil-Can', 'Oinks', 'Old Scratch',
              'Ovaltine', 'Pennywhistle', 'Pitchfork Ben', 'Potato Bug',
-             'Pushmeet','Rock Candy', 'Schlomo', 'Scratchensniff', 'Scut',
+             'Pushmeet', 'Rock Candy', 'Schlomo', 'Scratchensniff', 'Scut',
              "Sid 'The Squirts'", 'Skidmark', 'Slaps', 'Snakes', 'Snoobs',
              'Snorki', 'Soupcan Sam', 'Spitzitout', 'Squids', 'Stinky',
              'Storyboard', 'Sweet Tea', 'TeeTee', 'Wheezy Joe',
@@ -48,21 +48,21 @@ def main():
 
     last = ('Appleyard', 'Bigmeat', 'Bloominshine', 'Boogerbottom',
             'Breedslovetrout', 'Butterbaugh', 'Clovenhoof', 'Clutterbuck',
-            'Cocktoasten', 'Endicott', 'Fewhairs', 'Gooberdapple', 'Goodensmith',
+            'Cocktoasten', 'Endicot', 'Fewhairs', 'Gooberdapple', 'Godensmith',
             'Goodpasture', 'Guster', 'Henderson', 'Hooperbag', 'Hoosenater',
             'Hootkins', 'Jefferson', 'Jenkins', 'Jingley-Schmidt', 'Johnson',
-            'Kingfish', 'Listenbee', "M'Bembo", 'McFadden', 'Moonshine', 'Nettles',
+            'Kingfish', 'Linbe', "M'Bembo", 'McFadden', 'Moonshine', 'Nettles',
             'Noseworthy', 'Olivetti', 'Outerbridge', 'Overpeck', 'Overturf',
             'Oxhandler', 'Pealike', 'Pennywhistle', 'Peterson', 'Pieplow',
             'Pinkerton', 'Porkins', 'Putney', 'Quakenbush', 'Rainwater',
             'Rosenthal', 'Rubbins', 'Sackrider', 'Snuggleshine', 'Splern',
             'Stevens', 'Stroganoff', 'Sugar-Gold', 'Swackhamer', 'Tippins',
-            'Turnipseed', 'Vinaigrette', 'Walkingstick', 'Wallbanger', 'Weewax',
+            'Turnipseed', 'Vinaigrette', 'Walkingstick', 'Wallbanger', 'Wewax',
             'Weiners', 'Whipkey', 'Wigglesworth', 'Wimplesnatch', 'Winterkorn',
             'Woolysocks')
 
     while True:
-        print(f"\n\n\033[1;31m{random.choice(first)} {random.choice(last)}\033[0m\n\n")
+        print(f"\n\033[1;31m{random.choice(first)} {random.choice(last)}\033[0m\n")
         try_again = input("Try again? (Press Enter else n to quit)\n")
         if try_again.lower() == "n":
             break
