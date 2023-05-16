@@ -4,6 +4,28 @@
 import tkinter as tk
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 
+NUMBER = 0
+
+def evaluate_text():
+    """Evaluate the text and return the result in an alert"""
+    global NUMBER
+    NUMBER = NUMBER + 1
+    text = txt_edit.get("1.0", tk.END)
+    try:
+        if text.strip() == "9+10":
+            result = 21
+        else:
+            result = eval(text)
+        tk.messagebox.showinfo(
+            title="Evaluation Results {}".format(NUMBER),
+            message="Result is: {}".format(result)
+            )
+    except:
+        tk.messagebox.showerror(
+            title="Evaluation Error",
+            message="Invalid expression"
+            )
+
 def validate_parentheses():
     """ Validate that all parentheses are correctly matched"""
     # define which characters are used as parentheses and
@@ -26,7 +48,7 @@ def validate_parentheses():
                     title="Parentheses Validation",
                     message=f"Unmatched closing parentheses {c}"
                     )
-                return()
+                return
             # else pop the match off the stack
             else:
                 parenstack.pop()
@@ -86,10 +108,12 @@ btn_save = tk.Button(frm_buttons, text="Save As...", command=save_file)
 btn_validate_parens = tk.Button(frm_buttons,
                                 text="Check Parentheses",
                                 command=validate_parentheses)
+btn_evaluate = tk.Button(frm_buttons, text="Evaluate", command=evaluate_text)
 
 btn_open.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
 btn_save.grid(row=1, column=0, sticky="ew", padx=5, pady=5)
-btn_validate_parens.grid(row=2, column=0, sticky="ew", padx=5)
+btn_validate_parens.grid(row=2, column=0, sticky="ew", padx=5,pady=5)
+btn_evaluate.grid(row=3, column=0, sticky="ew", padx=5)
 
 frm_buttons.grid(row=0, column=0, sticky="ns")
 txt_edit.grid(row=0, column=1, sticky="nsew")
