@@ -6,7 +6,7 @@ import load_dictionary
 
 def main():
     """Load files, run filters, allow user to view anagrams by 1st letter."""
-    name = 'tmvoordle'
+    name = input("Enter a name to search anagrams of: ")
     name = name.lower()
 
     word_list_ini = load_dictionary.load('dictionary.txt')
