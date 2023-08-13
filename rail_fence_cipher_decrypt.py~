@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+r"""Decrypt a Civil War 'rail fence' type cipher.
+
+This is for a 2-rail fence cipher for short messages.
+
+Example plaintext: 'Buy more Maine potatoes'
+
+Rail fence style:  B Y O E A N P T T E
+                    U M R M I E O A O S
+
+Read zigzag:        \/\/\/\/\/\/\/\/\/\
+
+Ciphertext: BYOEA NPTTE UMRMI EOSOS
+"""
+import math
+import itertools
+#-------------------------------------------------------------------------------
+# USER INPUT:
+# the string to be decrypted (between quotes):
+ciphertext = """LTSRS OETEI EADET NETEH DOTER EEUCO SVRHR VRNRS UDRHS AEFHT ES
+"""
+
+# END OF USER INPUT
+#-------------------------------------------------------------------------------
+
+
+def main():
+    """Run program to decrypt 2-rail fence cipher."""
+    message = prep_ciphertext(ciphertext)
+    row1, row2 = split_rails(message)
+    decrypt(row1, row2)
+
+
+def prep_ciphertext(ciphertext)

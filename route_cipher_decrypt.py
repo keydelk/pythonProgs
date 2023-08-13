@@ -32,7 +32,7 @@ import sys
 # USER INPUT
 
 # the string to be decrypted (type or paste between triple-quotes):
-ciphertext = """16 12 8 4 0 1 5 9 13 17 18 14 10 6 2 3 7 11 15 19"""
+ciphertext = """rest transport you godwin villiage roanoke with are your is just supplies free snow heading to gone to south filler"""
 
 # number of columns in the transposition matrix
 COLS = 4
@@ -109,3 +109,14 @@ def build_matrix(key_int, cipherlist):
     return translation_matrix
 
 
+def decrypt(translation_matrix):
+    """Loop through nested lists popping off last item to a string."""
+    plaintext = ''
+    for i in range(ROWS):
+        for matrix_col in translation_matrix:
+            word = str(matrix_col.pop())
+            plaintext += word + ' '
+    return plaintext
+
+if __name__ == '__main__':
+    main()
