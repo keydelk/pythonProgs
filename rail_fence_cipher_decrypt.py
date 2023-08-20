@@ -26,10 +26,8 @@ import itertools
 
 def main():
     """Run program to decrypt 2-rail fence cipher."""
-    ciphertext = input("Input ciphertext: ")
-    message = prep_ciphertext(ciphertext)
-    row1, row2 = split_rails(message)
-    decrypt(row1, row2)
+    ciphertext = input()
+    print(decrypt(ciphertext))
 
 
 def prep_ciphertext(ciphertext):
@@ -47,17 +45,19 @@ def split_rails(message):
     return row1, row2
 
 
-def decrypt(row1, row2):
+def decrypt(ciphertext):
     """Build list with every other letter in 2 strings and print."""
+    message = prep_ciphertext(ciphertext)
+    row1, row2 = split_rails(message)
     plaintext = []
     for r1, r2 in itertools.zip_longest(row1, row2):
         plaintext.append(r1)
         plaintext.append(r2)
     if None in plaintext:
         plaintext.pop()
-    plaintext = "".join(plaintext)
-#    print(f"rail 1 = {row1}\nrail 2 = {row2}\n") # uncomment for debugging
-    print(f"{plaintext}")
+    return "".join(plaintext)
+
+
 
 
 if __name__ == '__main__':

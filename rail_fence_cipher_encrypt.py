@@ -17,7 +17,8 @@ Encrypted: BYOEA NPTTE UMRMI EOSOS
 # USER INPUT is now prompted
 
 # The string to be encrypted (enter between quotes):
-# plaintext = """Let us cross over the river and rest under the shade of the trees
+# plaintext = """Let us cross over the river and rest under the shade of
+# the trees
 # """
 
 # END OF USER INPUT
@@ -26,10 +27,8 @@ Encrypted: BYOEA NPTTE UMRMI EOSOS
 
 def main():
     """Run program to encrypt message using 2-rail rail fence cipher."""
-    plaintext = input("Enter plaintext: ")
-    message = prep_plaintext(plaintext)
-    rails = build_rails(message)
-    encrypt(rails)
+    plaintext = input()
+    print(encrypt(plaintext))
 
 
 def prep_plaintext(plaintext):
@@ -48,10 +47,11 @@ def build_rails(message):
     return rails
 
 
-def encrypt(rails):
+def encrypt(plaintext):
     """Split letters in ciphertext into chunks of 5 & join to make string."""
-    ciphertext = ' '.join([rails[i:i+5] for i in range(0, len(rails), 5)])
-    print(f"{ciphertext}")
+    message = prep_plaintext(plaintext)
+    rails = build_rails(message)
+    return ' '.join([rails[i:i+5] for i in range(0, len(rails), 5)])
 
 
 if __name__ == '__main__':

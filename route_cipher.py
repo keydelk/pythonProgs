@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Decrypt a path through a Union Route Cipher
+"""Encrypt or decrypt a Union Route Cipher
 
 Designed for whole-word transposition ciphers with variable rows & columns.
 Assumes encryption began at either the top or bottom of a column.
@@ -23,36 +23,38 @@ Arrows show the encryption rout: for negative key values, read UP.
 └─┴─┴─┴─┘
 start  end
 
-Required inputs - a text message, # of columns, # of rows, key string
-Prints translated plaintext
+Required inputs - a text message and key string
 """
 import sys
 
-# =======================================================================
-# USER INPUT
-
-# the string to be decrypted (type or paste between triple-quotes):
-ciphertext = """this off detained ascertain wayland correspondents of at why and if fills it you get they neptune the tribune please are them can up"""
-
-# number of columns in the transposition matrix
-COLS = 4
-
-# number of rows in the transposition matrix
-ROWS = 6
-
-# key with spaces between numbers; negative to read UP column
-key = """-1 2 -3 4"""
-
-# END OF USER INPUT - DO NOT EDIT BELOW THIS LINE.
-# =======================================================================
-
 
 def main():
-    """Run program and print decrypted plaintext."""
-    print(f"ciphertext = {ciphertext}")
-    print(f"Trying {COLS} columns")
-    print(f"Trying {ROWS} rows")
-    print(f"Trying key = {key}")
+    """Run program from command line."""
+    while True:
+        encrypt_or_decrypt = input("[E]ncrypt or [D]ecrypt? ").upper()
+        if encrypt_or_decrypt[0] == 'E':
+            plaintext = input("Enter plaintext (and padding) to encrypt: ")
+            key = input("Enter encryption key (e.g. -1 2 -3 4): ")
+            if len(plaintext.split()) % len(key.split()) != 0:
+                print("Number of words must be a multiple of the length of the key.")
+                continue
+            ciphertext = encrypt(plaintext, key)
+            print(f"Ciphertext: {ciphertext}")
+        elif encrypt_or_decrypt[0] == 'D':
+            ciphertext = input("Enter ciphertext: ")
+            key = input("Enter encryption key (e.g. -1 2 -3 4): ")
+            if len(ciphertext.split()) % len(key.split()) != 0:
+                print("Number of words must be a multiple of the length of the key.")
+                continue
+            plaintext = decrypt(ciphertext, key)
+            print(f"Plaintext: {plaintext}")
+        else:
+            print("Invalid choice. Enter 'E' or 'D'.")
+        try_again = input("Try again? [Y]es or [N]o ").upper()
+        if try_again[0] != 'Y':
+            break
+    return 0
+
 
     # split elements into words
     cipherlist = list(ciphertext.split())
@@ -119,4 +121,4 @@ def decrypt(translation_matrix):
     return plaintext
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())
