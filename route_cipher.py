@@ -56,69 +56,41 @@ def main():
     return 0
 
 
-    # split elements into words
-    cipherlist = list(ciphertext.split())
-    validate_col_row(cipherlist)
-    key_int = key_to_int(key)
-    translation_matrix = build_matrix(key_int, cipherlist)
-    plaintext = decrypt(translation_matrix)
-
-    print(f"Plaintext = {plaintext}")
-
-
-def validate_col_row(cipherlist):
-    """Check that input columns & rows are valid vs message length."""
-    factors = []
-    len_cipher = len(cipherlist)
-    for i in range(2, len_cipher):  # range excludes 1-column ciphers
-        if len_cipher % i == 0:
-            factors.append(i)
-    print(f"Length of cipher = {len_cipher}")
-    print(f"Acceptable column/row values include: {factors}")
-    print()
-    if ROWS * COLS != len_cipher:
-        print("Error - Input columns and rows not factors of length "
-              "of cipher. Terminating program.", file=sys.stderr)
-        sys.exit(1)
-
-
-def key_to_int(key):
-    """Turn key into list of integers & check validity."""
-    key_int = [int(i) for i in key.split()]
-    key_int_lo = min(key_int)
-    key_int_hi = max(key_int)
-    if len(key_int) != COLS or key_int_lo < -COLS or key_int_hi > COLS \
-       or 0 in key_int:
-        print("Error - Problem with key. Terminating.", file=sys.stderr)
-        sys.exit(1)
-    else:
-        return key_int
-
-
-def build_matrix(key_int, cipherlist):
+def build_matrix(key_int, cipherlist, rows):
     """Turn every n items in a list into a new item in a list of lists."""
-    translation_matrix = [None] * COLS
+    translation_matrix = [None] * len(key_int)
     start = 0
-    stop = ROWS
+    stop = rows
     for k in key_int:
         if k < 0:  # read bottom-to-top of column
             col_items = cipherlist[start:stop]
         elif k > 0:  # read top-to-bottom of column
             col_items = list((reversed(cipherlist[start:stop])))
         translation_matrix[abs(k) - 1] = col_items
-        start += ROWS
-        stop += ROWS
+        start += rows
+        stop += rows
     return translation_matrix
 
 
-def decrypt(translation_matrix):
-    """Loop through nested lists popping off last item to a string."""
+def decrypt(ciphertext, key):
+    """Decrypt a route cipher given the ciphertext and key."""
+    # split elements into words
+    cipherlist = list(ciphertext.split())
+    key_int = [int(i) for i in key.split()]
+    rows = int(len(cipherlist) / len(key_int))
+    translation_matrix = build_matrix(key_int, cipherlist, rows)
     plaintext = ''
-    for i in range(ROWS):
+    for i in range(rows):
         for matrix_col in translation_matrix:
             word = str(matrix_col.pop())
             plaintext += word + ' '
     return plaintext
+
+
+def encrypt(plaintext, key):
+    """Encrypt a route cipher given the ciphertext and key."""
+    return "Not yet implemented"
+
 
 if __name__ == '__main__':
     sys.exit(main())
