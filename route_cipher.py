@@ -56,7 +56,7 @@ def main():
     return 0
 
 
-def build_matrix(key_int, cipherlist, rows):
+def decrypt_matrix(key_int, cipherlist, rows):
     """Turn every n items in a list into a new item in a list of lists."""
     translation_matrix = [None] * len(key_int)
     start = 0
@@ -78,7 +78,7 @@ def decrypt(ciphertext, key):
     cipherlist = list(ciphertext.split())
     key_int = [int(i) for i in key.split()]
     rows = int(len(cipherlist) / len(key_int))
-    translation_matrix = build_matrix(key_int, cipherlist, rows)
+    translation_matrix = decrypt_matrix(key_int, cipherlist, rows)
     plaintext = ''
     for i in range(rows):
         for matrix_col in translation_matrix:
@@ -87,9 +87,42 @@ def decrypt(ciphertext, key):
     return plaintext
 
 
+def encrypt_matrix(key_int, wordlist, rows):
+    """Build the translation matrix. Number of columns = length of key"""
+    cols = len(key_int)
+    translation_matrix = [None] * rows
+    start = 0
+    stop = cols
+    for i in range(rows):
+        translation_matrix[i] = wordlist[start:stop]
+        start += cols
+        stop += cols
+    return translation_matrix
+
+
+def rotate_matrix(original):
+    """Rotates the matrix 90 degrees clockwise"""
+    return list(zip(*original[::-1]))
+
+
 def encrypt(plaintext, key):
     """Encrypt a route cipher given the ciphertext and key."""
-    return "Not yet implemented"
+    wordlist = list(plaintext.split())
+    key_int = [int(i) for i in key.split()]
+    rows = int(len(wordlist) / len(key_int))
+    encryption_matrix = encrypt_matrix(key_int, wordlist, rows)
+    # rotate the matrix so we can index by columns
+    # note: this means that in the rotated matrix
+    # the first column is the first row, but backwards
+    encryption_matrix = rotate_matrix(encryption_matrix)
+    ciphertext = ''
+    for k in key_int:
+        col_items = encryption_matrix[abs(k)-1]
+        if k > 0:  # read from the old top, so reverse the list
+            col_items = col_items[::-1]
+        for item in col_items:
+            ciphertext += str(item) + ' '
+    return ciphertext.strip()
 
 
 if __name__ == '__main__':

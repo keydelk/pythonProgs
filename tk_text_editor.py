@@ -4,6 +4,7 @@
 import tkinter as tk
 import rail_fence_cipher_encrypt as rf_encrypt
 import rail_fence_cipher_decrypt as rf_decrypt
+import route_cipher
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 
 
@@ -100,8 +101,22 @@ def save_file():
     window.title(f"Tk Text Editor - {filepath}")
 
 
+def route_cipher_encrypt():
+    """Encrypts a Union Route Cipher."""
+    plaintext = txt_edit.get("1.0", tk.END)
+    route_key = ent_route_key.get()
+    ciphertext = route_cipher.encrypt(plaintext, route_key)
+    txt_edit.delete("1.0", tk.END)
+    txt_edit.insert(tk.END, ciphertext)
+
+
 def route_cipher_decrypt():
     """Decrypt a path through a Union Route Cipher."""
+    ciphertext = txt_edit.get("1.0", tk.END)
+    route_key = ent_route_key.get()
+    plaintext = route_cipher.decrypt(ciphertext, route_key)
+    txt_edit.delete("1.0", tk.END)
+    txt_edit.insert(tk.END, plaintext)
 
 
 def rail_cipher_encrypt():
@@ -140,6 +155,18 @@ btn_rail_encrypt = tk.Button(frm_buttons,
 btn_rail_decrypt = tk.Button(frm_buttons,
                              text="Rail Cipher Decrypt",
                              command=rail_cipher_decrypt)
+lbl_route_key = tk.Label(frm_buttons,
+                         text="Route Cipher Key"
+                         )
+ent_route_key = tk.Entry(frm_buttons)
+ent_route_key.insert(0, "-1 2 -3 4")
+btn_route_encrypt = tk.Button(frm_buttons,
+                              text="Route Cipher Encrypt",
+                              command=route_cipher_encrypt)
+btn_route_decrypt = tk.Button(frm_buttons,
+                              text="Route Cipher Decrypt",
+                              command=route_cipher_decrypt)
+
 
 btn_open.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
 btn_save.grid(row=1, column=0, sticky="ew", padx=5, pady=5)
@@ -147,6 +174,11 @@ btn_validate_parens.grid(row=2, column=0, sticky="ew", padx=5, pady=5)
 btn_evaluate.grid(row=3, column=0, sticky="ew", padx=5, pady=5)
 btn_rail_encrypt.grid(row=4, column=0, sticky="ew", padx=5, pady=5)
 btn_rail_decrypt.grid(row=5, column=0, sticky="ew", padx=5, pady=5)
+lbl_route_key.grid(row=6, column=0, sticky="ew", padx=5, pady=5)
+ent_route_key.grid(row=7, column=0, sticky="ew", padx=5, pady=5)
+btn_route_encrypt.grid(row=8, column=0, sticky="ew", padx=5, pady=5)
+btn_route_decrypt.grid(row=9, column=0, sticky="ew", padx=5, pady=5)
+
 
 frm_buttons.grid(row=0, column=0, sticky="ns")
 txt_edit.grid(row=0, column=1, sticky="nsew")
