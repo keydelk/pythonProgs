@@ -1,0 +1,8 @@
+def G(n):
+    val = 0
+    if n > 0:
+        val = n - G(G(n-1))
+    print(f"G({n}) = {val}")
+    return val
+
+G(3)
