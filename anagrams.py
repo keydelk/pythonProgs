@@ -3,7 +3,9 @@
 
 import load_dictionary
 
-word_list = load_dictionary.load("dictionary.txt")
+#word_list = load_dictionary.load("dictionary.txt") # short word list
+word_list = load_dictionary.load("/usr/share/dict/american-english") # long word list
+
 anagram_list = []
 
 # input a SINGLE word or name to find its anagram(s)

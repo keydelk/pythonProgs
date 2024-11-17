@@ -5,6 +5,7 @@ import tkinter as tk
 import rail_fence_cipher_encrypt as rf_encrypt
 import rail_fence_cipher_decrypt as rf_decrypt
 import route_cipher
+import word_finder
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 
 
@@ -134,6 +135,11 @@ def rail_cipher_decrypt():
     txt_edit.delete("1.0", tk.END)
     txt_edit.insert(tk.END, plaintext)
 
+def find_words():
+    """Finds words of 4 or more characters containing only the specified letters."""
+    letters = txt_edit.get("1.0", tk.END)
+    found_words = word_finder.find_words(letters)
+    txt_edit.insert(tk.END, found_words)
 
 window = tk.Tk()
 window.title("Tk Text Editor")
@@ -166,7 +172,9 @@ btn_route_encrypt = tk.Button(frm_buttons,
 btn_route_decrypt = tk.Button(frm_buttons,
                               text="Route Cipher Decrypt",
                               command=route_cipher_decrypt)
-
+btn_find_words = tk.Button(frm_buttons,
+                           text="Find Words",
+                           command=find_words)
 
 btn_open.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
 btn_save.grid(row=1, column=0, sticky="ew", padx=5, pady=5)
@@ -178,7 +186,7 @@ lbl_route_key.grid(row=6, column=0, sticky="ew", padx=5, pady=5)
 ent_route_key.grid(row=7, column=0, sticky="ew", padx=5, pady=5)
 btn_route_encrypt.grid(row=8, column=0, sticky="ew", padx=5, pady=5)
 btn_route_decrypt.grid(row=9, column=0, sticky="ew", padx=5, pady=5)
-
+btn_find_words.grid(row=10, column=0, sticky="ew", padx=5, pady=5)
 
 frm_buttons.grid(row=0, column=0, sticky="ns")
 txt_edit.grid(row=0, column=1, sticky="nsew")
