@@ -1,23 +1,26 @@
-import kivy
+
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 
 
-class MyGrid(GridLayout):
+class LoginScreen(GridLayout):
     def __init__(self, **kwargs):
-        super(MyGrid, self).__init__(**kwargs)
-        self.cols = 3
-        self.add_widget(Label(text="Name: "))
-        self.name = TextInput()
-        self.add_widget(self.name)
+        super(LoginScreen, self).__init__(**kwargs)
+        self.cols = 2
+        self.add_widget(Label(text="User Name: "))
+        self.username = TextInput(multiline=False)
+        self.add_widget(self.username)
+        self.add_widget(Label(text="Password: "))
+        self.password = TextInput(password=True, multiline=False)
+        self.add_widget(self.password)
 
 
-class MyApp(App):
+class HelloKivyApp(App):
     def build(self):
-        return MyGrid()
+        return LoginScreen()
 
 
 if __name__ == "__main__":
-    MyApp().run()
+    HelloKivyApp().run()
