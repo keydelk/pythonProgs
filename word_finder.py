@@ -14,9 +14,11 @@ def main():
     """Run Program from command line."""
     # read command line arguments
     parser = argparse.ArgumentParser(description='This program finds words consisting of only the given letters')
-    parser.add_argument('-l', '--letters', type=str, help='Letters allowed', default='')
+    parser.add_argument('-l', '--letters', type=str, help='letters allowed', default='')
     parser.add_argument('-d', '--dictionary', type=str, help='file path of the dictionary to use',
                         default="/usr/share/dict/american-english")
+    parser.add_argument('-m', '--minimum', type=int, help='minimum length of words', default=4)
+    
     args = parser.parse_args()
     letters = args.letters
     # prompt user for letters if none provided:
@@ -25,24 +27,22 @@ def main():
     # make sure everything is lower case
     letters = letters.lower()
     # generate the list of  found words
-    found_words = find_words(letters, dictionary=args.dictionary)
+    found_words = find_words(letters, dictionary=args.dictionary, minimum=args.minimum)
     # print out list of found words
     if len(found_words) == 0:
         print("\nNo words found.\n")
     else:
-        print("Words found: ", *found_words, sep='\n')
+        print(*found_words, sep='\n')
     return 0
 
 
-def find_words(letters, dictionary="/usr/share/dict/american-english"):
+def find_words(letters, dictionary="/usr/share/dict/american-english", minimum=4):
     """Returns all words >= 4 characters that can be made with the given letters in a list."""
     word_list = load_dictionary.load(dictionary)
     found_words = []
     # loop through word list to find words that can be made with letters
-    # to make this like the spelling bee game, the first letter in letters must
-    # be in the word, and the word must be at least 4 letters
     for word in word_list:
-        if len(word) < 4 or letters[0] not in word:
+        if len(word) < minimum or letters[0] not in word:
             continue
         for char in word:
             if char not in letters:
