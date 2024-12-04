@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+# https://adventofcode.com/2024/day/2
+# Given a list of reports (rows) containing integer levels separated by spaces,
+# determine how many reports are safe. A report is safe if and only if it is
+# gradually increasing or gradually decreasing. Adjacent levels can differ by
+# one to three and must all be in the same direction.
+import sys
+
+reports = sys.stdin.readlines()
+number_safe = 0
+
+for report in reports:
+    levels = int(report.split(' '))
+    print levels

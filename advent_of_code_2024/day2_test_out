@@ -1,0 +1,70 @@
+Checking report: 7 6 4 2 1
+
+	 checking: 7, 6, direction: -1
+	 checking: 6, 4, direction: -1
+	 checking: 4, 2, direction: -1
+	 checking: 2, 1, direction: -1
+  Report Safe.	Safe Reports so far: 1
+Checking report: 1 2 7 8 9
+
+	 checking: 1, 2, direction: 1
+	 checking: 2, 7, direction: 1
+		Dampener used
+			Jump too big. Removed levels[2] = 7
+	 checking: 2, 8, direction: 1
+		Unsafe levels
+Checking report: 9 7 6 2 1
+
+	 checking: 9, 7, direction: -1
+	 checking: 7, 6, direction: -1
+	 checking: 6, 2, direction: -1
+		Dampener used
+			Jump too big. Removed levels[3] = 2
+	 checking: 6, 1, direction: -1
+		Unsafe levels
+Checking report: 1 3 2 4 5
+
+	 checking: 1, 3, direction: 1
+	 checking: 3, 2, direction: 1
+		Dampener used
+	 checking: 1, 2, direction: 1
+			Removed levels[1] = 3
+	 checking: 2, 4, direction: 1
+	 checking: 4, 5, direction: 1
+  Report Safe.	Safe Reports so far: 2
+Checking report: 8 6 4 4 1
+
+	 checking: 8, 6, direction: -1
+	 checking: 6, 4, direction: -1
+	 checking: 4, 4, direction: -1
+		Dampener used
+	 checking: 6, 4, direction: -1
+			Removed levels[2] = 4
+	 checking: 4, 1, direction: -1
+  Report Safe.	Safe Reports so far: 3
+Checking report: 1 3 6 7 9
+
+	 checking: 1, 3, direction: 1
+	 checking: 3, 6, direction: 1
+	 checking: 6, 7, direction: 1
+	 checking: 7, 9, direction: 1
+  Report Safe.	Safe Reports so far: 4
+Checking report: 12 2 4 5 6
+
+	 checking: 12, 2, direction: -1
+		Dampener used
+			First level outlier,removed levels[0] = 12
+				Recalculating direction
+	 checking: 2, 4, direction: 1
+	 checking: 4, 5, direction: 1
+	 checking: 5, 6, direction: 1
+  Report Safe.	Safe Reports so far: 5
+Checking report: 1 4 3 2 1
+	 checking: 1, 4, direction: 1
+	 checking: 4, 3, direction: 1
+		Dampener used
+	 checking: 1, 3, direction: 1
+			Removed levels[1] = 4
+	 checking: 3, 2, direction: 1
+		Unsafe levels
+5

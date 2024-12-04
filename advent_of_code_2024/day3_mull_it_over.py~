@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+# URL: https://adventofcode.com/2024/day/3
+import sys
+import re
+
+
+def parse_line(line):
+    return re.findall("mul\(\d\d?\d?,\d\d?\d?\)")
+
+
+def parse_operands(exp):
+    return
+
+
+lines = sys.stdin.readlines()
