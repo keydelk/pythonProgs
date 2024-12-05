@@ -1,0 +1,62 @@
+['XMAS..X\n', 'MM...M.\n', 'A.A.A..\n', 'S..S..X\n', '.AA.AA.\n', '.MM.MM.\n', 'X..X..X']
+
+	num_rows = 7
+	num_columns = 7
+	num_diagonals = 13
+
+Searching rows:
+	XMAS..X	Num in row: 1
+	MM...M.	Num in row: 0
+	A.A.A..	Num in row: 0
+	S..S..X	Num in row: 0
+	.AA.AA.	Num in row: 0
+	.MM.MM.	Num in row: 0
+	X..X..X	Num in row: 0
+
+Searching columns:
+	XMAS..X	Num in column: 1
+	MM..AM.	Num in column: 0
+	A.A.AM.	Num in column: 0
+	S..S..X	Num in column: 0
+	..A.AM.	Num in column: 0
+	.M..AM.	Num in column: 0
+	X..X..X	Num in column: 0
+
+Searching / diagonals
+Diagonal:  S..S
+	Num XMAS: 0
+Diagonal:  ..A..
+	Num XMAS: 0
+Diagonal:  .A....
+	Num XMAS: 0
+Diagonal:  XMASAMX
+	Num XMAS: 2
+Diagonal:  X.M....
+	Num XMAS: 0
+Diagonal:  X...A.
+	Num XMAS: 0
+Diagonal:  X..XM
+	Num XMAS: 0
+Diagonal:  X..X
+	Num XMAS: 0
+
+Searching \ diagonals
+Diagonal:  X..S
+	Num XMAS: 0
+Diagonal:  ..A.A
+	Num XMAS: 0
+Diagonal:  .A...M
+	Num XMAS: 0
+Diagonal:  XMASAMX
+	Num XMAS: 2
+Diagonal:  X.M...M
+	Num XMAS: 0
+Diagonal:  X...A.
+	Num XMAS: 0
+Diagonal:  X..XM
+	Num XMAS: 0
+Diagonal:  X..X
+	Num XMAS: 0
+
+Grand Total:
+6
