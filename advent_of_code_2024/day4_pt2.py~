@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+# URL: https://adventofcode.com/2024/day/4#part2
+import sys
+
+
+def is_x_mas(i, j):
+    return True
+
+
+word_search = sys.stdin.readlines()
+num_rows = len(word_search)
+num_cols = len(word_search[0].strip())
+x_mases = 0
+
+for i in range(1, num_rows - 1):
+    for j in range(1, num_cols - 1):
+        if is_x_mas:
+            x_mases += 1
+
+print(x_mases)

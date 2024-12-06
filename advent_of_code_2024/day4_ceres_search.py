@@ -43,30 +43,38 @@ for i in range(num_columns):
 print("\nSearching / diagonals")
 for i in range(num_diagonals):
     diagonal = ""
-    diagonal_len = min(i+1, num_rows, num_columns, (num_diagonals + 1 - i))
+    diagonal_len = min(i+1, num_rows, num_columns, (num_diagonals - i))
+    start_row = min(i, num_rows-1)
+    start_col = max(0, (i+1 - num_columns))
+    print(f"Diagonal {i}: length = {diagonal_len}\tStarting pos: [{start_row}], [{start_col}]")
     # if the diagonal is less than 4 characters, no need to check
-    if diagonal_len < 4:
-        continue
+    # if diagonal_len < 4:
+    #     continue
     for j in range(diagonal_len):
-        diagonal += word_search[min((i - j), num_rows - 1)][min(j, num_columns - 1)]
+        row = start_row - j
+        col = start_col + j
+        diagonal += word_search[row][col]
     num_in_diagonal = count_xmas(diagonal)
-    print(f"Diagonal:  {diagonal}")
-    print(f"\tNum XMAS: {num_in_diagonal}")
+    print(f"\t{diagonal}\tNum XMAS: {num_in_diagonal}")
     num_matches += num_in_diagonal
 
 # Search \ diagonals starting from top right
 print("\nSearching \\ diagonals")
 for i in range(num_diagonals):
     diagonal = ""
-    diagonal_len = min(i+1, num_rows, num_columns, (num_diagonals + 1 - i))
+    diagonal_len = min(i+1, num_rows, num_columns, (num_diagonals - i))
+    start_row = min(i, num_rows-1)
+    start_col = min(num_columns - 1, (2*num_columns - i - 2))
+    print(f"Diagonal {i}: length = {diagonal_len}\tStarting pos: [{start_row}], [{start_col}]")
     # if the diagonal is less than 4 characters, no need to check
-    if diagonal_len < 4:
-        continue
+    # if diagonal_len < 4:
+    #     continue
     for j in range(diagonal_len):
-        diagonal += word_search[min((i - j), num_rows - 1)][max(num_columns - 1 - j, 0)]
+        row = start_row - j
+        col = start_col - j
+        diagonal += word_search[row][col]
     num_in_diagonal = count_xmas(diagonal)
-    print(f"Diagonal:  {diagonal}")
-    print(f"\tNum XMAS: {num_in_diagonal}")
+    print(f"\t{diagonal}\tNum XMAS: {num_in_diagonal}")
     num_matches += num_in_diagonal
 
 print("\nGrand Total:")
