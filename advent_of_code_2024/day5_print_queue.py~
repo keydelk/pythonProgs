@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+# Problem URL: https://adventofcode.com/2024/day/5
+import sys
+
+
+def rule_met(update, rule):
+    for i in range(len(update)):
+        if update[i] == rule[1]:
+            return not (rule[0] in update[i:])
+    return True
+
+
+def update_satisfies_rules(update, rules):
+    for rule in rules:
+        if not rule_met(update, rule):
+            return False
+    return True

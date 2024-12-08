@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+# Problem URL: https://adventofcode.com/2024/day/6
+import sys
+
+
+gmap = sys.stdin.readlines()
+num_rows = len(gmap)
+num_cols = len(gmap[0])
+guard_row = -1
+guard_col = -1
+
+# Get starting position of guard
+for i in range(num_rows):
+    if '^' in gmap[i]:
+        guard_row = i
+        break
+
+if guard_row == -1:
+    print("Guard not found.")
+    exit(1)
+
+for i in range(num_cols):
+    if gmap[guard_row][i] == '^':
+        guard_col = i
+        break
+
+print(f"Guard position: {guard_row},{guard_col}")
