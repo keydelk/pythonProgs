@@ -30,17 +30,22 @@ for key in ant_dict:
         for j in range(i + 1, len(val)):
             displacement = (val[j][0] - val[i][0], val[j][1] - val[i][1])
             print(f"{val[i]} to {val[j]}: {displacement}")
+            if val[i] not in antinodes:
+                antinodes.append(val[i])
+            if val[j] not in antinodes:
+                antinodes.append(val[j])
+                
             a = (val[i][0] - displacement[0], val[i][1] - displacement[1])
             b = (val[j][0] + displacement[0], val[j][1] + displacement[1])
-            print(f"\tAntinodes a = {a}, b = {b}")
-            if (a[0] < 0 or a[0] >= map_rows or a[1] < 0 or a[1] >= map_cols):
-                print("\t\ta out of bounds")
-            elif a not in antinodes:
-                antinodes.append(a)
-            if (b[0] < 0 or b[0] >= map_rows or b[1] < 0 or b[1] >= map_cols):
-                print("\t\tb out of bounds")
-            elif b not in antinodes:
-                antinodes.append(b)
+            while not (a[0] < 0 or a[0] >= map_rows or a[1] < 0 or a[1] >= map_cols):
+                if a not in antinodes:
+                    antinodes.append(a)
+                a = (a[0] - displacement[0], a[1] - displacement[1])
+
+            while not (b[0] < 0 or b[0] >= map_rows or b[1] < 0 or b[1] >= map_cols):
+                if b not in antinodes:
+                    antinodes.append(b)
+                b = (b[0] + displacement[0], b[1] + displacement[1])
 
 print(antinodes)
 print(f"Total antinodes: {len(antinodes)}")
